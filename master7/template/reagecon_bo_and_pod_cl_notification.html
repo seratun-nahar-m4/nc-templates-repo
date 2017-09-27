@@ -1,0 +1,188 @@
+@template~~#CR.DESC# Tracking email
+--@jobs~KEY,CSCLK,#CR.CRCD#+{CLIENT_ID}+{DATE_FROM},#CR.CRCD#+{CLIENT_ID}+{DATE_TO},#CS.STAT#:<>:D^#CS.BKOK#:=:Y~
+@jobs~TRACKING,,#hidCour#++#TODAY#+{TRACK_WEIGHT}+,#hidCour#++#TODAY#+9+#tilde#,#cl.dexc#:=:Y^#cl.dexc#:<>:^#cl.clid#:=:{CLIENT_ID}^#cs.stat#:<>:D~
+@job~~
+@setvar~~cl.dur1=#csd_emal#
+@tracking~#TH.SMLP#:isin:Booked,Delivered^#TH.SENT#:<>:Y^#TH.CLTR#:>=:#cl.tpri#~
+@trackline~~
+@subject~~#cr.desc# Tracking Update for #cs.hawb#
+@setvar~#cs.dlok#:<>:Y~subject=#cr.desc# Booking Confirmation
+@setvar~#cs.clok#:=:Y~subject=#cr.desc# Your Consignment Number #cs.hawb#
+@setvar~#cs.dlok#:=:Y~subject=#cr.desc# Proof of Delivery for #cs.hawb#
+@ack~~
+@newfile~
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Start of Booking notification -->
+<html>
+  <head></head>
+  <body>
+    <table width="100%" align="center" cellspacing="3" cellpadding="0" border="0">
+      <colgroup>
+        <col width="50%"/><col width="50%"/>
+      </colgroup>
+	  <tr>
+        <td colspan="2" bgcolor="FFFFFF">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%" style="border-color:#ffffff;">
+				<colgroup>
+					<col width="16%">
+					<col width="84%">
+				</colgroup>
+				<tr>
+				  <td><img alt="Titan Logo" src="https://titan.netcourier.net/images/titan_email_logo.jpg" /></td>
+				  <td style="border-bottom:6px solid red; padding-left: 2%; font-size:50px;"><font face="arial" color="#000066">Confirmation to Customer</font></td>
+				</tr>
+          </table>
+        </td>
+      </tr>
+	  <tr>
+        <td colspan="2" style="line-height: 0px;">
+			&#160;
+        </td>
+      </tr>
+	  <tr>
+        <td bgcolor="3c8c93" align="center" colspan="2">
+			<font face="arial" size="5" color="FFFFFF" style="line-height: 33px;">This message is automatically sent to Reagecon customer contact</font>
+        </td>
+      </tr>
+	  <tr>
+        <td colspan="2" bgcolor="FFFFFF">
+			<table border="0" cellspacing="0" cellpadding="0" width="100%" style="border-color:#ffffff;">
+				<colgroup>
+					<col width="40%">
+					<col width="20%">
+					<col width="40%">
+				</colgroup>
+				<tr>
+				  <td bgcolor="bbe0e3">&#160;</td>
+				  <td style="text-align: center;"><img alt="Reagecon Logo" src="https://titan.netcourier.net/images/reagecon.jpg" /></td>
+				  <td bgcolor="bbe0e3">&#160;</td>
+				</tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" bgcolor="FFFFFF">
+          <table border="0" cellspacing="2" cellpadding="2" width="100%">
+			<colgroup>
+				<col width="50%"/><col width="50%"/>
+			  </colgroup>
+            <tr>
+              <td bgcolor="bbe0e3" align="left" style="line-height: 25px;"><font face="arial" size="3" color="000066"><b>Booking Confirmation for #cs.hawb#</b></font></td>
+              <td bgcolor="e7f3f4" align="right" style="line-height: 25px;"><font face="arial" size="3" color="000066"><b>#cs.bkdt#</b></font></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+	  <tr>
+        <td bgcolor="bbe0e3" style="line-height: 25px;">
+			&#160;
+        </td>
+		<td bgcolor="f3f9fa">
+			&#160;
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="bbe0e3" align="center" colspan="2" style="line-height: 25px; font-size: 15px;"><font color="#000066" face="arial"><b>Please <a style="color:#009999;"  href="https://titan.netcourier.net/online/tracking/trackinginfo/#cs.hawb#">CLICK HERE</a> for full shipment tracking details</b></font>
+        </td>
+      </tr>
+	  <tr>
+        <td bgcolor="bbe0e3" align="center" colspan="2"  style="line-height: 32px; font-size: 19px;"><font color="#000066" face="arial"><b>CONSIGNMENT DETAILS</b></font></td>
+      </tr>
+@items
+      <tr>
+        <td colspan="2">
+          <table border="0" cellspacing="0" cellpadding="2" width="100%" style="border-color:#ffffff; font-weight:bold; line-height:25px;">
+@itemline
+@data~#cs.vwgt#:<>:~<tr>
+@data~#cs.vwgt#:<>:~<td bgcolor="bbe0e3" width="200px"><font color="000066" face="arial" size="3">No of pieces: #we.item#</font></td>
+@data~#cs.vwgt#:<>:~<td bgcolor="bbe0e3" width="200px"><font color="000066" face="arial" size="3">Length: #we.widt#</font></td> 
+@data~#cs.vwgt#:<>:~<td bgcolor="bbe0e3" width="200px"><font color="000066" face="arial" size="3">Width: #we.high#</font></td>
+@data~#cs.vwgt#:<>:~<td bgcolor="bbe0e3"><font face="arial" color="000066" size="3">Height: #we.dept#</font></td>
+@data~#cs.vwgt#:<>:~</tr>
+\@itemline
+          </table>
+        <td>
+      </tr>
+\@items
+      <tr>
+        <td colspan="2">
+          <table border="0" cellspacing="2" cellpadding="2" width="100%" style="color:#000066; font-size:15px; line-height:25px; font-weight:bold;">
+			<colgroup>
+				<col width="50%"/><col width="50%"/>
+			</colgroup>
+            <tr>
+              <td bgcolor="bbe0e3"><font face="arial">Weight: #cs.twgt#</font></td>
+              <td bgcolor="bbe0e3"><font face="arial">Contents: 
+@data~#contents#:=:~#consType#
+@data~#contents#:<>:~#contents#
+                </font>
+              </td>
+            </tr>
+@data~#service#:<>:~<tr><td bgcolor="bbe0e3" align="left" colspan="2"><font face="arial">Service level: #service#</font></td></tr>
+@data~#cs.cref#:<>:^#cs.crf2#:<>:~<tr><td bgcolor="bbe0e3" align="left"><font face="arial">Customer reference: #cs.cref#</font></td><td bgcolor="bbe0e3" align="left"><font face="arial">2nd reference: #cs.crf2#</font></td></tr>
+@data~#cs.cref#:<>:^#cs.crf2#:=:~<tr><td colspan="2" bgcolor="bbe0e3" align="left"><font face="arial">Customer reference: #cs.cref#</font></td></tr>
+@data~#cs.cref#:=:^#cs.crf2#:<>:~<tr><td colspan="2" bgcolor="bbe0e3" align="left"><font face="arial">2nd reference: #cs.crf2#</font></td></tr>
+@data~#ct.desc#:<>:^#ct_emal#:<>:~<tr><td bgcolor="bbe0e3" align="left"><font face="arial">Booked by: #ct.desc#</font></td><td bgcolor="bbe0e3" align="left"><font face="arial">Email: #ct_emal#</font></td></tr>
+@data~#ct.desc#:<>:^#ct_emal#:=:~<tr><td colspan="2" bgcolor="bbe0e3" align="left"><font face="arial">Booked by: #ct.desc#</font></td></tr>
+@data~#ct.desc#:=:^#ct_emal#:<>:~<tr><td colspan="2" bgcolor="bbe0e3" align="left"><font face="arial">Email: #ct_emal#</font></td></tr>
+@data~#cs.csvl#:<>:0.00^#cs.ival#:<>:0.00~<tr><td bgcolor="bbe0e3" align="left"><font face="arial">Value for Customs: #cs.csvl#</font></td><td bgcolor="bbe0e3" align="left"><font face="arial">Value for Insurance:  #cs.ival#</font></td></tr>
+@data~#cs.csvl#:<>:0.00^#cs.ival#:=:0.00~<tr><td colspan="2" bgcolor="bbe0e3" align="left"><font face="arial">Value for Customs: #cs.csvl#</font></td></tr>
+@data~#cs.csvl#:=:0.00^#cs.ival#:<>:0.00~<tr><td colspan="2" bgcolor="bbe0e3" align="left"><font face="arial">Value for Insurance:  #cs.ival#</font></td></tr>
+@data~#spin#:<>:~<tr><td colspan=2 bgcolor="bbe0e3" align="left"><font face="arial">Special Instructions:#spin#</font></td></tr>
+@data~#cs.note#:<>:~<tr><td colspan=2 bgcolor="bbe0e3" align="left"><font face="arial">Special Instructions:#cs.note#</font></td></tr>
+          </table>
+        </td>
+      </tr> 
+	  <tr style="color:#000066; font-weight: bold; font-size: 20px; line-height: 25px;">
+        <td bgcolor="bbe0e3" align="left" style="padding-left:4px;"><font face="arial"><b>Collection address</b></font></td>
+        <td bgcolor="ffffff" align="left"><font face="arial"><b>Delivery address</b></font></td>
+      </tr>
+      <tr style="font-weight: bold; font-size: 13px;">
+        <td bgcolor="bbe0e3" align="left" valign="top" style="padding-left:2%; color:#000066;">
+        <font face="arial">
+@data~#cs.snby#:<>:~&nbsp;&nbsp;#cs.snby#<br/>
+@data~#csc_cnam#:<>:~&nbsp;&nbsp;#csc_cnam#<br/>
+@data~#csc_adr1#:<>:~&nbsp;&nbsp;#csc_adr1#<br/>
+@data~#csc_adr2#:<>:~&nbsp;&nbsp;#csc_adr2#<br/>
+@data~#csc_adr3#:<>:~&nbsp;&nbsp;#csc_adr3#<br/>
+@data~#csc_adr4#:<>:~&nbsp;&nbsp;#csc_adr4#<br/>
+@data~#csc_zpcd#:<>:~&nbsp;&nbsp;#csc_zpcd#<br/>
+@data~#csc_ctry#:<>:~&nbsp;&nbsp;#csc_ctry#<br/>
+@data~#csc_ctnm#:<>:~&nbsp;&nbsp;#csc_ctnm#<br/>
+@data~#csc_phon#:<>:~&nbsp;&nbsp;#csc_phon#<br/>
+@data~#csc_emal#:<>:~&nbsp;&nbsp;#csc_emal#<br/>
+        </font>
+        </td>
+        <td bgcolor="f3f9fa" align="left" valign="top" style="padding-left:2%;color:#000066;">
+        <font face="arial">
+@data~#cs.snto#:<>:~&nbsp;&nbsp;#cs.snto#<br/>
+@data~#csc_cnam#:<>:~&nbsp;&nbsp;#csd_cnam#<br/>
+@data~#csd_adr1#:<>:~&nbsp;&nbsp;#csd_adr1#<br/>
+@data~#csd_adr2#:<>:~&nbsp;&nbsp;#csd_adr2#<br/>
+@data~#csd_adr3#:<>:~&nbsp;&nbsp;#csd_adr3#<br/>
+@data~#csd_adr4#:<>:~&nbsp;&nbsp;#csd_adr4#<br/>
+@data~#csd_zpcd#:<>:~&nbsp;&nbsp;#csd_zpcd#<br/>
+@data~#csd_ctry#:<>:~&nbsp;&nbsp;#csd_ctry#<br/>
+@data~#csd_ctnm#:<>:~&nbsp;&nbsp;#csd_ctnm#<br/>
+@data~#csd_phon#:<>:~&nbsp;&nbsp;#csd_phon#<br/>
+@data~#csd_emal#:<>:~&nbsp;&nbsp;#csd_emal#<br/>
+        </font>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="bbe0e3" align="center" colspan="2" style="color:#000066; font-weight: bold; font-size: 18px; line-height: 25px;"><font face="arial"><b>sales@reagecon.ie</b></font></td>
+      </tr>
+      <tr>
+        <td bgcolor="bbe0e3" align="center" colspan="2" style="color:#000066; font-size: 10px; line-height: 25px;">
+           <font face="arial"><img src="https://titan.netcourier.net/netcourier-data/confirmation/token/#ackToken#"/>
+                  Please click <a href="https://titan.netcourier.net/netcourier-data/confirmation/token/#ackToken#?method=click">here</a> to acknowledge that you have received this mail.</font>
+       </td>
+      </tr>
+    </table>
+  </body>
+</html>
+\@trackline
+\@tracking
+\@job
+\@jobs
+\@template
